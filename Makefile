@@ -12,7 +12,7 @@ location_%.geojson :
 	wget -O $@ "https://api.cps.edu/maps/cps/GeoJSON?mapname=SCHOOL&year=$*"
 
 boundary_%.geojson : elementary_schools_boundary_%.geojson high_schools_boundary_%.geojson
-	geojson-merge $^ > $@
+	npx geojson-merge $^ > $@
 
 elementary_schools_boundary_%.geojson :
 	wget -O $@ "https://api.cps.edu/maps/cps/GeoJSON?mapname=BOUNDARY_ES&year=$*"
