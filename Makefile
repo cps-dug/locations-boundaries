@@ -6,7 +6,7 @@ location.geojson : location_2023.geojson
 	cat $< | python scripts/homogenize.py > $@
 
 boundary.geojson : boundary_2023.geojson
-	cat $< | python scripts/homogenize.py > $@
+	cat $< | python scripts/homogenize.py | python scripts/gather_polygons.py > $@
 
 location_%.geojson :
 	wget -O $@ "https://api.cps.edu/maps/cps/GeoJSON?mapname=SCHOOL&year=$*"
