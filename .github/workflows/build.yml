@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: setup requirements
         run: |-
-          sudo apt-get install libspatialite-dev
+          sudo apt-get install libsqlite3-mod-spatialite
           pip install -r requirements.txt
           npm install
       - name: build database
