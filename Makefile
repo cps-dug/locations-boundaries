@@ -1,6 +1,6 @@
 geography.db : location.geojson boundary.geojson
-	geojson-to-sqlite $@ location location.geojson --spatialite_mod=/opt/homebrew/Cellar/libspatialite/5.0.1_2/lib/mod_spatialite.dylib --spatial-index
-	geojson-to-sqlite $@ boundary boundary.geojson --spatialite_mod=/opt/homebrew/Cellar/libspatialite/5.0.1_2/lib/mod_spatialite.dylib --spatial-index
+	geojson-to-sqlite $@ location location.geojson --spatial-index
+	geojson-to-sqlite $@ boundary boundary.geojson --spatial-index
 
 location.geojson : location_2023.geojson
 	cat $< | python scripts/homogenize.py > $@
