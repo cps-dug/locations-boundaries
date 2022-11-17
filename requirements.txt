@@ -1,3 +1,2 @@
-csvs-to-sqlite
-csvkit
 sqlite-utils
+geojson-to-sqlite

@@ -3,18 +3,16 @@ name: Build Database
 concurrency: 
   group: database-build
 
-# Controls when the action will run. 
 on:
-  # Uncomment this to run this workflow on a schedule
-  # schedule:
+  schedule:
     # * is a special character in YAML so you have to quote this string
-    # - cron:  '15 2 * * *'    
+    - cron:  '15 2 * * *'    
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
 env:
-  ASSET: name_of_database.zip
+  ASSET: geography.db.zip
 
 jobs:
   build:
@@ -24,11 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: setup requirements
-        run: pip install -r requirements.txt
+        run: |-
+          pip install -r requirements.txt
+          npm install -g
       - name: build database
         run: make
       - name: prepare database for upload
-        run: zip ${{ env.ASSET}} name_of_database.db
+        run: zip ${{ env.ASSET}} geography.db
       - name: release # if you have large artifacts upload to a repo's release.
         uses: WebFreak001/deploy-nightly@v1.2.0
         env:

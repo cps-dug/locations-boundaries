@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "geojson-merge": "^0.3.0"
+  }
+}
