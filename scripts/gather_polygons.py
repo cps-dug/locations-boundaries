@@ -7,6 +7,8 @@ school_grades_boundaries = {}
 
 for feature in geojson["features"]:
     key = (feature["properties"]["SCHOOL_ID"], feature["properties"]["BOUNDARYGR"])
+    if feature["geometry"]["type"] == "LineString":
+        continue
     if key in school_grades_boundaries:
         school_grades_boundaries[key].append(feature)
     else:
