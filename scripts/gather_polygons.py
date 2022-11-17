@@ -15,7 +15,7 @@ for feature in geojson["features"]:
 combined_features = []
 for key, features in list(school_grades_boundaries.items()):
     if len(features) == 1:
-        combined_features.append(feature)
+        combined_features.append(features[0])
     else:
         multipolygon = {
             "type": "MultiPolygon",
