@@ -24,7 +24,7 @@ jobs:
       - name: setup requirements
         run: |-
           pip install -r requirements.txt
-          npm install -g
+          npm install
       - name: build database
         run: make
       - name: prepare database for upload
