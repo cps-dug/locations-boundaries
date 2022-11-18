@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mapbox/geojson-rewind": "^0.5.2",
     "geojson-merge": "^0.3.0"
   }
 }
