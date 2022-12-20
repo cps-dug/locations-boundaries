@@ -9,7 +9,20 @@ for feature in geojson["features"]:
     key = (feature["properties"]["SCHOOL_ID"], feature["properties"]["BOUNDARYGR"])
     if feature["geometry"]["type"] == "LineString":
         continue
-    if key in school_grades_boundaries:
+    if feature["geometry"]["type"] == "GeometryCollection":
+        polygons = [
+            geom
+            for geom in feature["geometry"]["geometries"]
+            if geom["type"] == "Polygon"
+        ]
+        for polygon in polygons:
+            derived_feature = feature.copy()
+            derived_feature["geometry"] = polygon
+            if key in school_grades_boundaries:
+                school_grades_boundaries[key].append(derived_feature)
+            else:
+                school_grades_boundaries[key] = [derived_feature]
+    elif key in school_grades_boundaries:
         school_grades_boundaries[key].append(feature)
     else:
         school_grades_boundaries[key] = [feature]
