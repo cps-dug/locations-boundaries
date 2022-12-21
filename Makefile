@@ -21,5 +21,5 @@ elementary_schools_boundary_%.geojson :
 high_schools_boundary_%.geojson :
 	wget -O $@ "https://api.cps.edu/maps/cps/GeoJSON?mapname=BOUNDARY_HS&year=$*"
 
-blocks_2020.geojson
+blocks_2020.geojson :
 	python scripts/blocks.py > $@
