@@ -1,6 +1,7 @@
-geography.db : location.geojson boundary.geojson
+geography.db : location.geojson boundary.geojson blocks_2020.geojson
 	geojson-to-sqlite $@ location location.geojson --spatial-index
 	geojson-to-sqlite $@ boundary boundary.geojson --spatial-index
+	geojson-to-sqlite $@ boundary blocks_2020.geojson --spatial-index
 
 location.geojson : location_2023.geojson
 	cat $< | python scripts/homogenize.py > $@
@@ -19,3 +20,6 @@ elementary_schools_boundary_%.geojson :
 
 high_schools_boundary_%.geojson :
 	wget -O $@ "https://api.cps.edu/maps/cps/GeoJSON?mapname=BOUNDARY_HS&year=$*"
+
+blocks_2020.geojson
+	python scripts/blocks.py > $@
