@@ -12,4 +12,8 @@ population = c.pl.state_place_block(
     ("NAME", "P1_001N", "P3_001N"), 17, 14000, return_geometry=True
 )
 
+for feature in population["features"]:
+    properties = feature["properties"]
+    feature["properties"] = {k: v for k, v in properties.items() if k.isupper()}
+
 json.dump(population, sys.stdout)
