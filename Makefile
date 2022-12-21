@@ -1,7 +1,7 @@
 geography.db : location.geojson boundary.geojson blocks_2020.geojson
 	geojson-to-sqlite $@ location location.geojson --spatial-index
 	geojson-to-sqlite $@ boundary boundary.geojson --spatial-index
-	geojson-to-sqlite $@ boundary blocks_2020.geojson --spatial-index
+	geojson-to-sqlite $@ blocks_2020 blocks_2020.geojson --spatial-index
 
 location.geojson : location_2023.geojson
 	cat $< | python scripts/homogenize.py > $@
